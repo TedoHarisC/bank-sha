@@ -106,21 +106,9 @@ class SignInPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 50),
-          SizedBox(
-            width: double.infinity,
-            height: 24,
-            child: TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-              ),
-              child: Text(
-                'Create New Account',
-                style: greyTextStyle.copyWith(
-                  fontSize: 16,
-                ),
-              ),
-            ),
+          CustomTextButton(
+            title: 'Create New Account',
+            onPressed: () {},
           ),
         ],
       ),
