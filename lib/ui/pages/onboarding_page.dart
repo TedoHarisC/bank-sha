@@ -1,5 +1,6 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/pages/sign_in_page.dart';
+import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -96,27 +97,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   currentIndex == 2
                       ? Column(
                           children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: TextButton(
-                                onPressed: () {
-                                  carouselController.nextPage();
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: purpleColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(56),
-                                  ),
-                                ),
-                                child: Text(
-                                  'Get Started',
-                                  style: whiteTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: semiBold,
-                                  ),
-                                ),
-                              ),
+                            CustomFilledButton(
+                              title: 'Get Started',
+                              onPressed: () {},
                             ),
                             const SizedBox(height: 20),
                             SizedBox(

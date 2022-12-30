@@ -1,4 +1,5 @@
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatelessWidget {
@@ -97,26 +98,10 @@ class SignInPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 //NOTE : BUTTON SIGN IN
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: purpleColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(56),
-                      ),
-                    ),
-                    child: Text(
-                      'Sign In',
-                      style: whiteTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  ),
-                ),
+                CustomFilledButton(
+                  title: 'Sign In',
+                  onPressed: () {},
+                )
               ],
             ),
           ),
