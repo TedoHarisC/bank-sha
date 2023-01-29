@@ -81,7 +81,9 @@ class SignUpSetKTPPage extends StatelessWidget {
                 //NOTE : BUTTON CONTINUE
                 CustomFilledButton(
                   title: 'Continue',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sign-up-success');
+                  },
                 )
               ],
             ),
@@ -89,7 +91,9 @@ class SignUpSetKTPPage extends StatelessWidget {
           const SizedBox(height: 60),
           CustomTextButton(
             title: 'Skip For Now',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/sign-up-success');
+            },
           ),
           const SizedBox(height: 50),
         ],
