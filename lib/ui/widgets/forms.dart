@@ -35,14 +35,6 @@ class CustomFormField extends StatelessWidget {
             contentPadding: const EdgeInsets.all(12),
           ),
         ),
-        const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Text(
-            'Forgot Password',
-            style: blueTextStyle,
-          ),
-        )
       ],
     );
   }
