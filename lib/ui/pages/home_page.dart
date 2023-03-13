@@ -427,7 +427,7 @@ class HomePage extends StatelessWidget {
               HomeTipsItem(
                 imageUrl: 'assets/img_tips3.png',
                 title: 'Great hack to get better advices',
-                url: 'https://www.google.com',
+                url: 'https://pub.dev/',
               ),
               HomeTipsItem(
                 imageUrl: 'assets/img_tips4.png',
