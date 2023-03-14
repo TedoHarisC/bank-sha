@@ -29,7 +29,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
