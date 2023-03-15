@@ -11,9 +11,12 @@ class TopupAmountPage extends StatefulWidget {
 
 class _TopupAmountPageState extends State<TopupAmountPage> {
   final TextEditingController amountController =
-      TextEditingController(text: '');
+      TextEditingController(text: '0');
 
   addAmount(String number) {
+    if (amountController.text == '0') {
+      amountController.text = '';
+    }
     setState(() {
       amountController.text = amountController.text + number;
     });
@@ -24,6 +27,10 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
       setState(() {
         amountController.text = amountController.text
             .substring(0, amountController.text.length - 1);
+
+        if (amountController.text == '') {
+          amountController.text = '0';
+        }
       });
     }
   }
@@ -34,7 +41,7 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
       backgroundColor: darkBackgroundColor,
       body: ListView(
         padding: const EdgeInsets.symmetric(
-          horizontal: 58,
+          horizontal: 60,
         ),
         children: [
           const SizedBox(height: 36),
@@ -48,27 +55,29 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
             ),
           ),
           const SizedBox(height: 67),
-          SizedBox(
-            width: 200,
-            child: TextFormField(
-              controller: amountController,
-              enabled: false,
-              cursorColor: greyColor,
-              style: whiteTextStyle.copyWith(
-                fontSize: 36,
-                fontWeight: medium,
-              ),
-              decoration: InputDecoration(
-                prefixIcon: Text(
-                  'Rp',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 36,
-                    fontWeight: semiBold,
-                  ),
+          Align(
+            child: SizedBox(
+              width: 200,
+              child: TextFormField(
+                controller: amountController,
+                enabled: false,
+                cursorColor: greyColor,
+                style: whiteTextStyle.copyWith(
+                  fontSize: 36,
+                  fontWeight: medium,
                 ),
-                disabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: greyColor,
+                decoration: InputDecoration(
+                  prefixIcon: Text(
+                    'Rp',
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 36,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  disabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: greyColor,
+                    ),
                   ),
                 ),
               ),
@@ -162,7 +171,18 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 50),
+          CustomFilledButton(
+            title: 'Checkout Now',
+            onPressed: () {},
+          ),
+          const SizedBox(height: 25),
+          CustomTextButton(
+            title: 'Terms & Conditions',
+            onPressed: () {},
+          ),
+          const SizedBox(height: 40),
         ],
       ),
     );
