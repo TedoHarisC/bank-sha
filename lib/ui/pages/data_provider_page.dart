@@ -1,4 +1,5 @@
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:bank_sha/ui/widgets/data_povider_item.dart';
 import 'package:flutter/material.dart';
 
@@ -68,6 +69,26 @@ class DataProviderPage extends StatelessWidget {
             name: 'Telkomsel',
             imageUrl: 'assets/img_provider_telkomsel.png',
             isSelected: true,
+          ),
+          const DataProviderItem(
+            name: 'Indosat Ooredoo',
+            imageUrl: 'assets/img_provider_indosat.png',
+            isSelected: true,
+          ),
+          const DataProviderItem(
+            name: 'Singtel ID',
+            imageUrl: 'assets/img_provider_singtel.png',
+            isSelected: true,
+          ),
+          const SizedBox(
+            height: 135,
+          ),
+          CustomFilledButton(
+            title: 'Continue',
+            onPressed: () {},
+          ),
+          const SizedBox(
+            height: 57,
           ),
         ],
       ),
