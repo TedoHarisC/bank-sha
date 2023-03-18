@@ -1,4 +1,5 @@
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/widgets/data_povider_item.dart';
 import 'package:flutter/material.dart';
 
 class DataProviderPage extends StatelessWidget {
@@ -51,7 +52,23 @@ class DataProviderPage extends StatelessWidget {
                 ],
               )
             ],
-          )
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Text(
+            'Select Provider',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(height: 14),
+          const DataProviderItem(
+            name: 'Telkomsel',
+            imageUrl: 'assets/img_provider_telkomsel.png',
+            isSelected: true,
+          ),
         ],
       ),
     );
