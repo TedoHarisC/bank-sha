@@ -50,16 +50,6 @@ class DataPackagePage extends StatelessWidget {
                 amount: 10,
                 price: 100000,
               ),
-            ],
-          ),
-          Wrap(
-            spacing: 17,
-            runSpacing: 17,
-            children: const [
-              PackageItem(
-                amount: 10,
-                price: 100000,
-              ),
               PackageItem(
                 amount: 25,
                 price: 200000,

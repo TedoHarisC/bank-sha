@@ -507,7 +507,7 @@ class MoreDialog extends StatelessWidget {
                   onTap: () {},
                 ),
                 HomeServiceItem(
-                  iconUrl: 'assets/ic_product_movie.png',
+                  iconUrl: 'assets/ic_product_tv.png',
                   title: 'Movie',
                   onTap: () {},
                 ),
