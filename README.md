@@ -1,8 +1,19 @@
 # bank_sha
 
-A new Flutter project.
+<img src="assets/thumbnail.png"/>
 
-## Getting Started
+-- 
+
+Project Topup App and Bank Connected with payment gateway using Flutter framework and Dart Language Programming 
+
+-- 
+
+Using BLOC state management so you can try using this state management in this project. Learn form BWA (buildwithangga)
+
+## Author(s)
+**Tedo Haris Chandra** ([Follow my Instagram](https://instagram.com/dooooo.dev))
+
+## Getting Started (Flutter Documentation)
 
 This project is a starting point for a Flutter application.
 
