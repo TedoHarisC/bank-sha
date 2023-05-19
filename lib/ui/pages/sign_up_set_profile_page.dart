@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:bank_sha/models/sign_up_form_model.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/pages/sign_up_set_ktp_page.dart';
 import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:bank_sha/ui/widgets/forms.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,12 @@ class SignUpSetProfilePage extends StatefulWidget {
 class _SignUpSetProfilePageState extends State<SignUpSetProfilePage> {
   final pinController = TextEditingController(text: '');
   XFile? selectedImage;
+  bool validation() {
+    if (pinController.text.length != 6) {
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,13 +128,30 @@ class _SignUpSetProfilePageState extends State<SignUpSetProfilePage> {
                   title: 'Set PIN (6 digit number)',
                   obscureText: true,
                   controller: pinController,
+                  keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 30),
                 //NOTE : BUTTON CONTINUE
                 CustomFilledButton(
                   title: 'Continue',
                   onPressed: () {
-                    Navigator.pushNamed(context, '/sign-up-set-ktp');
+                    if (validation()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpSetKTPPage(
+                            data: widget.data.copyWith(
+                              pin: pinController.text,
+                              profilePicture: selectedImage == null
+                                  ? null
+                                  : 'data:image/png;base64${base64Encode(File(selectedImage!.path).readAsBytesSync())}',
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      showCustomSnackbar(context, 'PIN harus 6 digit');
+                    }
                   },
                 )
               ],
