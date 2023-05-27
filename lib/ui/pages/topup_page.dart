@@ -1,7 +1,9 @@
+import 'package:bank_sha/blocs/auth/auth_bloc.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widgets/bank_item.dart';
 import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopupPage extends StatelessWidget {
   const TopupPage({super.key});
@@ -26,33 +28,41 @@ class TopupPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          Row(
-            children: [
-              Image.asset(
-                'assets/img_wallet.png',
-                width: 80,
-              ),
-              const SizedBox(width: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '8008 2208 1996',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: medium,
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              if (state is AuthSuccess) {
+                return Row(
+                  children: [
+                    Image.asset(
+                      'assets/img_wallet.png',
+                      width: 80,
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Angga Risky',
-                    style: greyTextStyle.copyWith(
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              )
-            ],
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          state.user.cardNumber!.replaceAllMapped(
+                              RegExp(r".{4}"), (match) => "${match.group(0)} "),
+                          style: blackTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: medium,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          state.user.name.toString(),
+                          style: greyTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              }
+              return Container();
+            },
           ),
           const SizedBox(height: 40),
           Text(
