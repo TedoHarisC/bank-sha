@@ -1,12 +1,21 @@
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
+import 'package:bank_sha/blocs/payment_method/payment_method_bloc.dart';
+import 'package:bank_sha/models/payment_method_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widgets/bank_item.dart';
 import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TopupPage extends StatelessWidget {
+class TopupPage extends StatefulWidget {
   const TopupPage({super.key});
+
+  @override
+  State<TopupPage> createState() => _TopupPageState();
+}
+
+class _TopupPageState extends State<TopupPage> {
+  PaymentMethodModel? selectedPaymentMethod;
 
   @override
   Widget build(BuildContext context) {
@@ -73,30 +82,43 @@ class TopupPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-          const BankItem(
-            title: 'BANK BCA',
-            imageUrl: 'assets/img_bank_bca.png',
-            isSelected: true,
-          ),
-          const BankItem(
-            title: 'BANK BNI',
-            imageUrl: 'assets/img_bank_bni.png',
-          ),
-          const BankItem(
-            title: 'BANK Mandiri',
-            imageUrl: 'assets/img_bank_mandiri.png',
-          ),
-          const BankItem(
-            title: 'BANK OCBC',
-            imageUrl: 'assets/img_bank_ocbc.png',
+          BlocProvider(
+            create: (context) => PaymentMethodBloc()..add(PaymentMethodGet()),
+            child: BlocBuilder<PaymentMethodBloc, PaymentMethodState>(
+              builder: (context, state) {
+                if (state is PaymentMethodSuccess) {
+                  return Column(
+                    children: state.paymentMethods.map((paymentMethod) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedPaymentMethod = paymentMethod;
+                          });
+                        },
+                        child: BankItem(
+                          paymentMethod: paymentMethod,
+                          isSelected:
+                              paymentMethod.id == selectedPaymentMethod?.id,
+                        ),
+                      );
+                    }).toList(),
+                  );
+                }
+
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 12),
-          CustomFilledButton(
-            title: 'Continue',
-            onPressed: () {
-              Navigator.pushNamed(context, '/topup-amount');
-            },
-          ),
+          if (selectedPaymentMethod != null)
+            CustomFilledButton(
+              title: 'Continue',
+              onPressed: () {
+                Navigator.pushNamed(context, '/topup-amount');
+              },
+            ),
           const SizedBox(height: 57),
         ],
       ),
